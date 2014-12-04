@@ -31,13 +31,24 @@
 				}
 			},
 			{
-				url: '/submissions',
+				url: '/jobs',
 				config: {
-					templateUrl: 'app/submissions/submissions.html',
-					title: 'submissions',
+					templateUrl: 'app/job/jobs.html',
+					title: 'jobs',
 					settings: {
 						nav: 2,
-						content: '<i class="fa fa-trash"></i> Submissions'
+						content: '<i class="fa fa-coffee"></i> Jobs'
+					}
+				}
+			},
+			{
+				url: '/submissions',
+				config: {
+					templateUrl: 'app/submission/submissions.html',
+					title: 'submissions',
+					settings: {
+						nav: 3,
+						content: '<i class="fa fa-paper-plane-o"></i> Submissions'
 					}
 				}
 			},
@@ -47,7 +58,7 @@
 					title: 'admin',
 					templateUrl: 'app/admin/admin.html',
 					settings: {
-						nav: 3,
+						nav: 4,
 						content: '<i class="fa fa-lock"></i> Admin'
 					}
 				}

@@ -1,0 +1,74 @@
+﻿<section class="mainbar" ng-controller="jobs as vm">
+	<section class="matter">
+		<div class="container">
+			<div class="row">
+				<div class="widget wblue">
+					<div cc-widget-header title="Job Entry"></div>
+					<div class="widget-content user">
+						<div class="form-group row">
+						
+							<div class="col-md-6">
+								<input ng-model="vm.company" placeholder="enter a company" 
+									   typeahead="company.Name for company in vm.getCompany($viewValue)" 
+									   typeahead-loading="loadingCompanies" class="form-control">
+								<i ng-show="loadingCompanies" class="fa fa-spin fa-spinner"></i>
+							</div>
+
+							<div class="col-md-6">
+								<input ng-model="vm.recruiter" placeholder="enter a recruiter"
+									   typeahead="recruiter.Name for recruiter in vm.getRecruiter($viewValue)"
+									   typeahead-loading="loadingRecruiters" class="form-control">
+								<i ng-show="loadingRecruiters" class="fa fa-spin fa-spinner"></i>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-12">
+								<input ng-model="vm.title" placeholder="enter a title"
+									   class="form-control">
+							</div>
+						</div>
+						<button ng-click="vm.create(vm.recruiter, vm.company, vm.title)" class="btn btn-primary">Create Job</button>
+						<div class="widget-foot">
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="widget wgreen">
+					<div cc-widget-header title="Jobs View"></div>
+					<div class="widget-content user">
+						<table class="table table-condensed table-responsive table-striped">
+							<thead>
+								<tr>
+									<th>Company</th>
+									<th>Recruiter</th>
+									<th>Title</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="job in vm.jobs">
+									<td>{{job.Company.Name}}</td>
+									<td>{{job.Recruiter.Name}}</td>
+									<td>{{job.Name}}</td>
+									<td >
+										<button ng-click="vm.delete(job)" class="btn btn-primary">
+											<span class="fa fa-lg fa-trash-o"></span>
+										</button>
+										<button ng-click="vm.edit(job)" class="btn btn-success">
+											<span class="fa fa-lg fa-edit"></span>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="widget-foot">
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>

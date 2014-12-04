@@ -14,11 +14,11 @@
 
 		vm.title = 'Submissions';
 
-		activate();
-
 		function activate() {
 			common.activateController([], 'submissions')
 				.then(function () { log('Activated Submissions View'); });
 		}
+
+		activate();
 	}
 })();

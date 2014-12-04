@@ -8,7 +8,7 @@
 			display: none!important;
 		}
 	</style>
-	<title data-ng-bind="title">Hot Towel Angular</title>
+	<title data-ng-bind="title">Job Hunt Angular</title>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
@@ -37,7 +37,7 @@
 		<div id="splash-page" data-ng-show="false">
 			<div class="page-splash">
 				<div class="page-splash-message">
-					Hot Towel Angular
+					Job Hunt Angular
 				</div>
 				<div class="progress progress-striped active page-progress-bar">
 					<div class="bar"></div>
@@ -49,22 +49,23 @@
 	<span data-cc-scroll-to-top></span>
 
 	<!-- Vendor Scripts -->
-	<script src="scripts/jquery-2.1.1.js"></script>
-	<script src="scripts/angular.js"></script>
-	<script src="scripts/angular-animate.js"></script>
-	<script src="scripts/angular-route.js"></script>
-	<script src="scripts/angular-sanitize.js"></script>
-	<script src="scripts/bootstrap.js"></script>
-	<script src="scripts/toastr.js"></script>
-	<script src="scripts/moment.js"></script>
-	<script src="scripts/ui-bootstrap-tpls-0.10.0.js"></script>
-	<script src="scripts/spin.js"></script>
+	<script src="Scripts/jquery-2.1.1.js"></script>
+	<script src="Scripts/angular.js"></script>
+	<script src="Scripts/angular-animate.js"></script>
+	<script src="Scripts/angular-route.js"></script>
+	<script src="Scripts/angular-sanitize.js"></script>
+	<script src="Scripts/bootstrap.js"></script>
+	<script src="Scripts/toastr.js"></script>
+	<script src="Scripts/moment.js"></script>
+	<script src="Scripts/ui-bootstrap-tpls-0.10.0.js"></script>
+	<script src="Scripts/spin.js"></script>
 
-	<script src="scripts/breeze.debug.js"></script>
-	<script src="scripts/breeze.angular.js"></script>
-	<script src="scripts/breeze.directives.js"></script>
-	<script src="scripts/breeze.saveErrorExtensions.js"></script>
-	<script src="scripts/breeze.to$q.shim.js"></script> <!-- Needed only if you are using to$q -->
+	<script src="Scripts/q.js"></script>
+	<script src="Scripts/breeze.debug.js"></script>
+	<script src="Scripts/breeze.angular.js"></script>
+	<script src="Scripts/breeze.directives.js"></script>
+	<script src="Scripts/breeze.saveErrorExtensions.js"></script>
+	<script src="Scripts/breeze.to$q.shim.js"></script> <!-- Needed only if you are using to$q -->
 
 	<!--<script src="app/services/entityManagerFactory.js"></script>-->
 	<!-- Bootstrapping -->
@@ -88,10 +89,12 @@
 	<script src="app/layout/sidebar.js"></script>
 
 	<!-- app Services -->
-	<script src="app/services/datacontext.js"></script>
+	<script src="app/services/dataContext.js"></script>
 	<script src="app/services/directives.js"></script>
 
 	<!-- app pieces -->
-	<script src="app/submissions/submissions.js"></script>
+	<script src="app/job/jobFactory.js"></script>
+	<script src="app/job/jobs.js"></script>
+	<script src="app/submission/submissions.js"></script>
 </body>
 </html>

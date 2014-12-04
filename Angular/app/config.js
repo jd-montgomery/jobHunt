@@ -7,8 +7,6 @@
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = 'toast-bottom-right';
 
-    var remoteServiceName = 'breeze/JobHunt';
-
     var events = {
         controllerActivateSuccess: 'controller.activateSuccess',
         spinnerToggle: 'spinner.toggle'
@@ -18,7 +16,7 @@
         appErrorPrefix: '[JH Error] ', //Configure the exceptionHandler decorator
         docTitle: 'JobHunt: ',
         events: events,
-        remoteServiceName: remoteServiceName,
+        remoteServiceUri: 'api/breeze/JobHunt',
         version: '1.0'
     };
 

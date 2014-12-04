@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', dashboard]);
+    angular.module('app').controller(controllerId, ['common', 'dataContext', dashboard]);
 
-    function dashboard(common, datacontext) {
+    function dashboard(common, dataContext) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -25,13 +25,13 @@
         }
 
         function getMessageCount() {
-            return datacontext.getMessageCount().then(function (data) {
+            return dataContext.getMessageCount().then(function (data) {
                 return vm.messageCount = data;
             });
         }
 
         function getPeople() {
-            return datacontext.getPeople().then(function (data) {
+            return dataContext.getPeople().then(function (data) {
                 return vm.people = data;
             });
         }

@@ -1,32 +1,48 @@
 (function () {
-    'use strict';
+	'use strict';
 
-    var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+	var serviceId = 'dataContext';
+	angular.module('app').factory(serviceId, ['common', 'config', dataContext]);
 
-    function datacontext(common) {
-        var $q = common.$q;
+	function dataContext(common, config) {
+		// Set convenience variables with commonly used Breeze query classes 
+		var EntityQuery = breeze.EntityQuery;
+		var FilterQueryOp = breeze.FilterQueryOp;
+		var Predicate = breeze.Predicate;
 
-        var service = {
-            getPeople: getPeople,
-            getMessageCount: getMessageCount
-        };
+		// create a manager to execute queries
+		var manager = new breeze.EntityManager(config.remoteServiceUri);
 
-        return service;
+		var $q = common.$q;
 
-        function getMessageCount() { return $q.when(72); }
+		var service = {
+			executeQuery: executeQuery,
+			EntityQuery: EntityQuery,
+			FilterQueryOp: FilterQueryOp,
+			getPeople: getPeople,
+			getMessageCount: getMessageCount,
+			Predicate: Predicate,
+		};
 
-        function getPeople() {
-            var people = [
-                { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
-                { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
-                { firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
-                { firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
-                { firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
-                { firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
-                { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
-            ];
-            return $q.when(people);
-        }
-    }
+		return service;
+
+		function executeQuery(breezeQuery) {
+			return manager.executeQuery(breezeQuery);
+		};
+
+		function getMessageCount() { return $q.when(72); }
+
+		function getPeople() {
+			var people = [
+				{ firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
+				{ firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
+				{ firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
+				{ firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
+				{ firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
+				{ firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
+				{ firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
+			];
+			return $q.when(people);
+		}
+	}
 })();
