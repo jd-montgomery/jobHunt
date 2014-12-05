@@ -5,11 +5,12 @@
 		.module('app')
 		.controller('jobs', jobs);
 
-	jobs.$inject = ['$location', 'common', 'dataContext', 'jobFactory']; 
+	jobs.$inject = ['$location', 'common', 'companyFactory', 'dataContext', 'jobFactory', 'recruiterFactory']; 
 
-	function jobs($location, common, dataContext, jobFactory) {
+	function jobs($location, common, companyFactory, dataContext, jobFactory, recruiterFactory) {
 		var getLogFn = common.logger.getLogFn,
 			log = getLogFn('submissions'),
+			logError = getLogFn('app', 'error'),
 			vm = this;
 
 		vm.company = undefined;
@@ -33,7 +34,7 @@
 		
 		function create(recruiter, company, title) {
 			jobFactory.create(recruiter, company, title);
-			//TODO change url to show details of job
+			//TODO redirect to show details of job
 		}
 
 		function deleteJob(job) {
@@ -42,30 +43,20 @@
 
 		function getCompany(companyName)
 		{
-			var query = dataContext.EntityQuery.from('Companies').
-				where('toLower(Name)', 'contains', companyName.toLowerCase()).
-				orderBy('Name');
-
-			return dataContext.executeQuery(query).
-			then(function (data) {
-				return data.results;
-			}, function (data) {
-				console.log('error: ' + data);
-				return data;
+			return companyFactory.getCompanies(companyName).
+			then(function (companies) {
+				return companies;
+			}, function (error) {
+				logError(error);
 			});
 		}
 
 		function getRecruiter(recruiterName) {
-			var query = dataContext.EntityQuery.from('Recruiters').
-				where('toLower(Name)', 'contains', recruiterName.toLowerCase()).
-				orderBy('Name');
-
-			return dataContext.executeQuery(query).
-			then(function (data) {
-				return data.results;
-			}, function (data) {
-				console.log('error: ' + data);
-				return data;
+			return recruiterFactory.getRecruiters(recruiterName).
+			then(function (recruiters) {
+				return recruiters;
+			}, function (error) {
+				logError(error);
 			});
 		}
 	}
