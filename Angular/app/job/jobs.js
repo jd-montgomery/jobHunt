@@ -5,9 +5,9 @@
 		.module('app')
 		.controller('jobs', jobs);
 
-	jobs.$inject = ['$location', 'common', 'companyFactory', 'dataContext', 'jobFactory', 'recruiterFactory']; 
+	jobs.$inject = ['$location', 'common', 'companyFactory', 'jobFactory', 'recruiterFactory']; 
 
-	function jobs($location, common, companyFactory, dataContext, jobFactory, recruiterFactory) {
+	function jobs($location, common, companyFactory, jobFactory, recruiterFactory) {
 		var getLogFn = common.logger.getLogFn,
 			log = getLogFn('submissions'),
 			logError = getLogFn('app', 'error'),
