@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="widget wblue">
-					<div cc-widget-header title="Job Entry"></div>
+					<div cc-widget-header allow-collapse="true" title="Job Entry"></div>
 					<div class="widget-content user">
 						<div class="form-group row">
 						
@@ -27,7 +27,13 @@
 									   class="form-control">
 							</div>
 						</div>
-						<button ng-click="vm.create(vm.recruiter, vm.company, vm.title)" class="btn btn-primary">Create Job</button>
+						<div class="form-group row">
+							<div class="col-md-12">
+								<textarea ng-model="vm.description" placeholder="enter a description"
+									rows="5" class="form-control"/>
+							</div>
+						</div>
+						<button ng-click="vm.create(vm.recruiter, vm.company, vm.title, vm.description)" class="btn btn-primary">Create Job</button>
 						<div class="widget-foot">
 							<div class="clearfix"></div>
 						</div>
@@ -41,6 +47,9 @@
 						<table class="table table-condensed table-responsive table-striped">
 							<thead>
 								<tr>
+									{{vm.jobs.length}} Jobs
+								</tr>
+								<tr>
 									<th>Company</th>
 									<th>Recruiter</th>
 									<th>Title</th>
@@ -48,11 +57,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="job in vm.jobs">
+								<tr ng-repeat="job in vm.jobs track by $index">
 									<td>{{job.Company.Name}}</td>
 									<td>{{job.Recruiter.Name}}</td>
 									<td>{{job.Name}}</td>
-									<td >
+									<td>
 										<button ng-click="vm.delete(job)" class="btn btn-primary">
 											<span class="fa fa-lg fa-trash-o"></span>
 										</button>

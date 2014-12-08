@@ -16,15 +16,21 @@
 		var $q = common.$q;
 
 		var service = {
+			createEntity: createEntity,
 			executeQuery: executeQuery,
 			EntityQuery: EntityQuery,
 			FilterQueryOp: FilterQueryOp,
 			getPeople: getPeople,
 			getMessageCount: getMessageCount,
 			Predicate: Predicate,
+			saveChanges: saveChanges,
 		};
 
 		return service;
+
+		function createEntity(entityName, entity) {
+			return manager.createEntity(entityName, entity);
+		}
 
 		function executeQuery(breezeQuery) {
 			return manager.executeQuery(breezeQuery);
@@ -43,6 +49,10 @@
 				{ firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
 			];
 			return $q.when(people);
+		}
+
+		function saveChanges() {
+			return manager.saveChanges();
 		}
 	}
 })();

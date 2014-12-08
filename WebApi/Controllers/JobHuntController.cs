@@ -1,6 +1,7 @@
 ﻿using Breeze.ContextProvider;
 using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
+using log4net;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace WebApi.Controllers
 	[BreezeController]
 	public class JobHuntController : ApiController
 	{
+		private readonly ILog log = LogManager.GetLogger(typeof(JobHuntController));
 		readonly EFContextProvider<JobHuntDbContext> _contextProvider = new EFContextProvider<JobHuntDbContext>();
 
 		// ~/breeze/jobhunt/Metadata 
@@ -60,7 +62,10 @@ namespace WebApi.Controllers
 		[HttpPost]
 		public SaveResult SaveChanges(JObject saveBundle)
 		{
-			return _contextProvider.SaveChanges(saveBundle);
+			log.InfoFormat("Saving Changes...{0}", saveBundle.ToString());
+			var returnVal = _contextProvider.SaveChanges(saveBundle);
+			log.Info("Saving Changes completed successfully.");
+			return returnVal;
 		}
 	}
 }
