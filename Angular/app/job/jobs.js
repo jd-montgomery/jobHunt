@@ -13,14 +13,15 @@
 			logError = getLogFn('app', 'error'),
 			vm = this;
 
-		vm.company = undefined;
+		vm.company = '';
 		vm.create = create;
+		vm.description = '';
 		vm.delete = deleteJob;
 		vm.getCompany = getCompany;
 		vm.getRecruiter = getRecruiter;
 		vm.jobs = [];
-		vm.recruiter = undefined;
-		vm.title = undefined;
+		vm.recruiter = '';
+		vm.title = '';
 
 		activate();
 
@@ -52,6 +53,10 @@
 			jobFactory.create(job).
 			then(function () {
 				log('Created new job');
+				vm.company = '';
+				vm.description = '';
+				vm.recruiter = '';
+				vm.title = '';
 			}, function (errors) {
 				logError(error);
 			});
