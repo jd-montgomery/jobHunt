@@ -5,9 +5,9 @@
 		.module('app')
 		.controller('jobs', jobs);
 
-	jobs.$inject = ['$location', '$scope', 'common', 'companyFactory', 'config', 'jobFactory', 'recruiterFactory']; 
+	jobs.$inject = ['$scope', 'common', 'companyFactory', 'config', 'jobFactory', 'recruiterFactory'];
 
-	function jobs($location, $scope, common, companyFactory, config, jobFactory, recruiterFactory) {
+	function jobs($scope, common, companyFactory, config, jobFactory, recruiterFactory) {
 		var getLogFn = common.logger.getLogFn,
 			log = getLogFn('submissions'),
 			logError = getLogFn('app', 'error'),
@@ -25,22 +25,19 @@
 		activate();
 
 		common.$rootScope.$on(config.events.jobsUpdated, function (event, jobs) {
-			vm.jobs = jobFactory.jobs;
-			//$scope.$apply();
+			vm.jobs = jobs;
+			$scope.$apply();
 		});
 
 		function activate() {
-			console.log('[ctrl-jobs] activate')
-			common.activateController([jobFactory.getData()], 'submissions').
+			common.activateController([jobFactory.getData()], 'jobs').
 			then(function () {
 				vm.jobs = jobFactory.jobs;
-				console.log('[ctrl-jobs] activate..then - loaded ' + vm.jobs.length + ' jobs.');
 				log('Activated Jobs View');
 			});
 		}
 		
 		function create(recruiter, company, title, description) {
-			console.log('[ctrl-jobs] create')
 			var job = {
 				Recruiter: {
 					Name: recruiter
@@ -53,12 +50,9 @@
 			};
 
 			jobFactory.create(job).
-			then(jobFactory.getData().
 			then(function () {
-				vm.jobs = jobFactory.jobs;
-				vm.$apply();
-			}),
-			function (errors) {
+				log('Created new job');
+			}, function (errors) {
 				logError(error);
 			});
 		}
@@ -67,8 +61,7 @@
 			log('deleted ' + job.Name);
 		}
 
-		function getCompany(companyName)
-		{
+		function getCompany(companyName) {
 			return companyFactory.getCompanies(companyName).
 			then(function (companies) {
 				return companies;
@@ -77,16 +70,6 @@
 			});
 		}
 
-		function getJobs() {
-			console.log('[ctrl-jobs] getJobs')
-			jobFactory.getData().
-			then(function () {
-				vm.jobs = jobsFactory.jobs;
-				console.log('[ctrl-jobs] getJobs..then - loaded ' + vm.jobs.length + ' jobs.');
-			}, function (error) {
-				console.log('[ctrl-jobs] getJobs..then - error');
-			});
-		}
 		function getRecruiter(recruiterName) {
 			return recruiterFactory.getRecruiters(recruiterName).
 			then(function (recruiters) {
