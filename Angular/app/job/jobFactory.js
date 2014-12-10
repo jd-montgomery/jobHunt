@@ -12,7 +12,9 @@
 			service = {
 				create: create,
 				getData: getData,
+				getJobById: getJobById,
 				jobs: jobs,
+				saveChanges: saveChanges,
 			};
 
 		return service;
@@ -37,6 +39,19 @@
 				console.log('error: ' + data);
 				return data;
 			});
+		}
+
+		function getJobById(id) {
+			var query = dataContext.EntityQuery.from('Jobs').
+			where('Id', 'eq', id);
+			return dataContext.executeQuery(query).
+			then(function (data) {
+				return data;
+			});
+		}
+
+		function saveChanges() {
+			return dataContext.saveChanges();
 		}
 	}
 })();

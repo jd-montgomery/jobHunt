@@ -13,6 +13,7 @@
 		routes.forEach(function (r) {
 			$routeProvider.when(r.url, r.config);
 		});
+
 		$routeProvider.otherwise({ redirectTo: '/' });
 	}
 
@@ -40,6 +41,12 @@
 						content: '<i class="fa fa-coffee"></i> Jobs'
 					}
 				}
+			},
+			{
+				url: '/jobs/:jobId',
+				config: {
+					templateUrl: 'app/job/jobDetail.html',
+				},
 			},
 			{
 				url: '/submissions',

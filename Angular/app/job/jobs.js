@@ -5,9 +5,9 @@
 		.module('app')
 		.controller('jobs', jobs);
 
-	jobs.$inject = ['$scope', 'common', 'companyFactory', 'config', 'jobFactory', 'recruiterFactory'];
+	jobs.$inject = ['$location', '$scope', 'common', 'companyFactory', 'config', 'jobFactory', 'recruiterFactory'];
 
-	function jobs($scope, common, companyFactory, config, jobFactory, recruiterFactory) {
+	function jobs($location, $scope, common, companyFactory, config, jobFactory, recruiterFactory) {
 		var getLogFn = common.logger.getLogFn,
 			log = getLogFn('submissions'),
 			logError = getLogFn('app', 'error'),
@@ -17,6 +17,7 @@
 		vm.create = create;
 		vm.description = '';
 		vm.delete = deleteJob;
+		vm.edit = edit;
 		vm.getCompany = getCompany;
 		vm.getRecruiter = getRecruiter;
 		vm.jobs = [];
@@ -64,6 +65,10 @@
 
 		function deleteJob(job) {
 			log('deleted ' + job.Name);
+		}
+		
+		function edit(job) {
+			$location.path('/jobs/' + job.Id);
 		}
 
 		function getCompany(companyName) {

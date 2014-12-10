@@ -1,0 +1,53 @@
+﻿<section class="mainbar" ng-controller="jobDetail as vm">
+	<section class="matter">
+		<div class="container">
+			<div class="row">
+				<div class="widget wblue">
+					<div cc-widget-header allow-collapse="true" title="Job {{vm.job.Id}} Detail"></div>
+					<div class="widget-content user">
+						<div class="row">
+							<div class="col-md-2">
+								Title
+							</div>
+							<div class="col-md-6">
+								<a href="#" editable-text="vm.job.Name">{{ vm.job.Name || '[empty]' }}</a>
+							</div>
+							<div class="col-md-4">
+								<button ng-disabled="!vm.hasChanges(vm.job)" 
+										class="btn btn-success" 
+										ng-click="vm.save(vm.job)"><span class="fa fa-save"></span> Save Changes</button>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-2">
+								Salary Min</div>
+							<div class="col-md-4">	
+								<a href="#" editable-number="vm.job.salaryMin">{{vm.job.salaryMin || '[empty]'}}</a>
+							</div>
+							<div class="col-md-2">Salary Max</div>
+							<div class="col-md-4">
+								<a href="#" editable-number="vm.job.salaryMax">{{vm.job.salaryMax || '[empty]'}}</a>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-2">Address One</div>
+							<div class="col-md-10">
+								<a href="#" editable-text="vm.job.addressOne">{{vm.job.addressOne || '[empty]'}}</a>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-2">Address Two <a href="#" editable-text="vm.job.addressTwo">{{vm.job.addressTwo || '[empty]'}}</a></div>
+						</div>
+						<br />
+						<textarea readonly editable-textarea="vm.job.Description" rows="7" cols="70" e-rows="7" e-cols="70">
+							{{ vm.job.Description || 'empty' }}
+						</textarea><br />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
