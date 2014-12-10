@@ -27,6 +27,10 @@ namespace WebApi.Models
         [Required]
         public string Description { get; set; }
 
+        public int? SalaryMin { get; set; }
+
+        public int? SalaryMax { get; set; }
+
         public bool IsClosed { get; set; }
 
         public virtual Company Company { get; set; }

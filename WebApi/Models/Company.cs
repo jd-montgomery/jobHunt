@@ -25,6 +25,12 @@ namespace WebApi.Models
         [StringLength(50)]
         public string WebSite { get; set; }
 
+        [StringLength(75)]
+        public string AddressOne { get; set; }
+
+        [StringLength(75)]
+        public string AddressTwo { get; set; }
+
         public virtual ICollection<Job> Jobs { get; set; }
     }
 }

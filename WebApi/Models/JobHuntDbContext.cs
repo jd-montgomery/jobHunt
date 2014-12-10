@@ -16,7 +16,6 @@ namespace WebApi.Models
 		public virtual DbSet<Job> Jobs { get; set; }
 		public virtual DbSet<Recruiter> Recruiters { get; set; }
 		public virtual DbSet<Submission> Submissions { get; set; }
-		public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
@@ -26,6 +25,14 @@ namespace WebApi.Models
 
 			modelBuilder.Entity<Company>()
 				.Property(e => e.WebSite)
+				.IsUnicode(false);
+
+			modelBuilder.Entity<Company>()
+				.Property(e => e.AddressOne)
+				.IsUnicode(false);
+
+			modelBuilder.Entity<Company>()
+				.Property(e => e.AddressTwo)
 				.IsUnicode(false);
 
 			modelBuilder.Entity<Company>()
@@ -59,8 +66,8 @@ namespace WebApi.Models
 				.IsUnicode(false);
 
 			modelBuilder.Entity<Recruiter>()
-				.HasMany(e => e.Employees)
-				.WithOptional(e => e.WorksFor)
+				.HasMany(e => e.Recruiter1)
+				.WithOptional(e => e.Recruiter2)
 				.HasForeignKey(e => e.ParentId);
 
 			modelBuilder.Entity<Recruiter>()

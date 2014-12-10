@@ -12,7 +12,7 @@ namespace WebApi.Models
         public Recruiter()
         {
             Jobs = new HashSet<Job>();
-            Employees = new HashSet<Recruiter>();
+            Recruiter1 = new HashSet<Recruiter>();
             Submissions = new HashSet<Submission>();
         }
 
@@ -32,9 +32,9 @@ namespace WebApi.Models
 
         public virtual ICollection<Job> Jobs { get; set; }
 
-        public virtual ICollection<Recruiter> Employees { get; set; }
+        public virtual ICollection<Recruiter> Recruiter1 { get; set; }
 
-        public virtual Recruiter WorksFor { get; set; }
+        public virtual Recruiter Recruiter2 { get; set; }
 
         public virtual ICollection<Submission> Submissions { get; set; }
     }

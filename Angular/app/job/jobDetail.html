@@ -23,24 +23,22 @@
 							<div class="col-md-2">
 								Salary Min</div>
 							<div class="col-md-4">	
-								<a href="#" editable-number="vm.job.salaryMin">{{vm.job.salaryMin || '[empty]'}}</a>
+								<a href="#" editable-number="vm.job.SalaryMin">{{vm.job.SalaryMin || '[empty]'}}</a>
 							</div>
 							<div class="col-md-2">Salary Max</div>
 							<div class="col-md-4">
-								<a href="#" editable-number="vm.job.salaryMax">{{vm.job.salaryMax || '[empty]'}}</a>
+								<a href="#" editable-number="vm.job.SalaryMax">{{vm.job.SalaryMax || '[empty]'}}</a>
 							</div>
 						</div>
 						<br />
 						<div class="row">
-							<div class="col-md-2">Address One</div>
+							<div class="col-md-2">Address</div>
 							<div class="col-md-10">
-								<a href="#" editable-text="vm.job.addressOne">{{vm.job.addressOne || '[empty]'}}</a>
+								{{vm.job.Company.Name}}<br />
+								{{vm.job.Company.AddressOne || '[empty]'}} {{vm.job.Company.AddressTwo}}
 							</div>
 						</div>
-						<br />
-						<div class="row">
-							<div class="col-md-2">Address Two <a href="#" editable-text="vm.job.addressTwo">{{vm.job.addressTwo || '[empty]'}}</a></div>
-						</div>
+						
 						<br />
 						<textarea readonly editable-textarea="vm.job.Description" rows="7" cols="70" e-rows="7" e-cols="70">
 							{{ vm.job.Description || 'empty' }}

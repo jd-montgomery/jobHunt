@@ -43,7 +43,8 @@
 
 		function getJobById(id) {
 			var query = dataContext.EntityQuery.from('Jobs').
-			where('Id', 'eq', id);
+				expand('Company', 'Recruiter').
+				where('Id', 'eq', id);
 			return dataContext.executeQuery(query).
 			then(function (data) {
 				return data;
