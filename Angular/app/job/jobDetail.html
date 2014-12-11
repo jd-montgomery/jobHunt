@@ -6,43 +6,59 @@
 					<div cc-widget-header allow-collapse="true" title="Job {{vm.job.Id}} Detail"></div>
 					<div class="widget-content user">
 						<div class="row">
-							<div class="col-md-2">
-								Title
-							</div>
 							<div class="col-md-6">
-								<a href="#" editable-text="vm.job.Name">{{ vm.job.Name || '[empty]' }}</a>
+								<h2>
+									<a href="#" editable-text="vm.job.Name">{{ vm.job.Name || '[empty]' }}</a><br />
+									<small>
+										{{vm.job.Company.Name}}
+									</small>
+								</h2>
 							</div>
 							<div class="col-md-4">
-								<button ng-disabled="!vm.hasChanges(vm.job)" 
-										class="btn btn-success" 
-										ng-click="vm.save(vm.job)"><span class="fa fa-save"></span> Save Changes</button>
+								<button ng-disabled="!vm.hasChanges(vm.job)"
+										class="btn btn-success"
+										ng-click="vm.save(vm.job)">
+									<span class="fa fa-save"></span> Save Changes
+								</button>
 							</div>
 						</div>
 						<br />
 						<div class="row">
 							<div class="col-md-2">
-								Salary Min</div>
-							<div class="col-md-4">	
-								<a href="#" editable-number="vm.job.SalaryMin">{{vm.job.SalaryMin || '[empty]'}}</a>
+								Salary
 							</div>
-							<div class="col-md-2">Salary Max</div>
 							<div class="col-md-4">
-								<a href="#" editable-number="vm.job.SalaryMax">{{vm.job.SalaryMax || '[empty]'}}</a>
+								<a href="#" editable-number="vm.job.SalaryMin">{{vm.job.SalaryMin || '[empty]' | currency}}</a>
+								-
+								<a href="#" editable-number="vm.job.SalaryMax">{{vm.job.SalaryMax || '[empty]' | currency}}</a>
 							</div>
 						</div>
 						<br />
 						<div class="row">
 							<div class="col-md-2">Address</div>
 							<div class="col-md-10">
-								{{vm.job.Company.Name}}<br />
 								{{vm.job.Company.AddressOne || '[empty]'}} {{vm.job.Company.AddressTwo}}
 							</div>
 						</div>
-						
+
 						<br />
-						<textarea readonly editable-textarea="vm.job.Description" rows="7" cols="70" e-rows="7" e-cols="70">
-							{{ vm.job.Description || 'empty' }}
-						</textarea><br />
+						<div class="row">
+							<div class="col-xs-12">
+								<button type="button" ng-click="vm.showHideDescription()" 
+										class="btn btn-info" data-toggle="collapse" data-target="#description">{{vm.descriptionButtonText}}</button>
+								<div id="description" class="collapse">
+									<pre disabled editable-textarea="vm.job.Description">
+										{{ vm.job.Description || 'empty' }}
+									</pre><br />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br />
+					<div class="panel panel-default">
+						<div  class="panel-body">
+							<div id="googleMap"></div>
+						</div>
 					</div>
 				</div>
 			</div>
