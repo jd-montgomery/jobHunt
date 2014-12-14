@@ -19,5 +19,9 @@ namespace WebApi.Models
 
         [Column(TypeName = "datetime2")]
         public DateTime CreatedOnUTC { get; set; }
+
+        public virtual ActivityType ActivityType { get; set; }
+
+        public virtual Job Job { get; set; }
     }
 }

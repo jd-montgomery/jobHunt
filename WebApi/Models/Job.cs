@@ -11,6 +11,7 @@ namespace WebApi.Models
     {
         public Job()
         {
+            ActivityLogs = new HashSet<ActivityLog>();
             Submissions = new HashSet<Submission>();
         }
 
@@ -32,6 +33,8 @@ namespace WebApi.Models
         public int? SalaryMax { get; set; }
 
         public bool IsClosed { get; set; }
+
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
 
         public virtual Company Company { get; set; }
 

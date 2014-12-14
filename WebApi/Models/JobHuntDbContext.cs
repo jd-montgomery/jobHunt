@@ -29,6 +29,12 @@ namespace WebApi.Models
 				.Property(e => e.Activity)
 				.IsUnicode(false);
 
+			modelBuilder.Entity<ActivityType>()
+				.HasMany(e => e.ActivityLogs)
+				.WithRequired(e => e.ActivityType)
+				.HasForeignKey(e => e.ActivityTypePK)
+				.WillCascadeOnDelete(false);
+
 			modelBuilder.Entity<Company>()
 				.Property(e => e.Name)
 				.IsUnicode(false);
@@ -57,6 +63,12 @@ namespace WebApi.Models
 			modelBuilder.Entity<Job>()
 				.Property(e => e.Description)
 				.IsUnicode(false);
+
+			modelBuilder.Entity<Job>()
+				.HasMany(e => e.ActivityLogs)
+				.WithRequired(e => e.Job)
+				.HasForeignKey(e => e.JobPK)
+				.WillCascadeOnDelete(false);
 
 			modelBuilder.Entity<Job>()
 				.HasMany(e => e.Submissions)
