@@ -12,6 +12,8 @@ namespace WebApi.Models
 		{
 		}
 
+		public virtual DbSet<ActivityLog> ActivityLogs { get; set; }
+		public virtual DbSet<ActivityType> ActivityTypes { get; set; }
 		public virtual DbSet<Company> Companies { get; set; }
 		public virtual DbSet<Job> Jobs { get; set; }
 		public virtual DbSet<Recruiter> Recruiters { get; set; }
@@ -19,6 +21,14 @@ namespace WebApi.Models
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<ActivityLog>()
+				.Property(e => e.Notes)
+				.IsUnicode(false);
+
+			modelBuilder.Entity<ActivityType>()
+				.Property(e => e.Activity)
+				.IsUnicode(false);
+
 			modelBuilder.Entity<Company>()
 				.Property(e => e.Name)
 				.IsUnicode(false);
