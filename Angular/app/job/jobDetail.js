@@ -5,15 +5,16 @@
 		.module('app')
 		.controller('jobDetail', jobDetail);
 
-	jobDetail.$inject = ['$routeParams', 'common', 'jobFactory']; 
+	jobDetail.$inject = ['$modal', '$routeParams', 'common', 'jobFactory']; 
 
-	function jobDetail($routeParams, common, jobFactory) {
+	function jobDetail($modal, $routeParams, common, jobFactory) {
 		var getLogFn = common.logger.getLogFn,
 			log = getLogFn('jobDetail'),
 			logError = getLogFn('jobDetail', 'error'),
 			vm = this;
 
 		vm.descriptionButtonText = 'Show Description';
+		vm.enterActivity = enterActivity;
 		vm.hasChanges = hasChanges;
 		vm.job = undefined;
 		vm.map = {
@@ -27,7 +28,7 @@
 
 		activate();
 
-		function activate() {
+		function activate() { 
 			common.activateController([getJob($routeParams.jobId)], 'jobDetail').
 				then(function () {
 					if (vm.job.Company.AddressOne)
@@ -51,6 +52,14 @@
 						position: results[0].geometry.location
 					});
 				}
+			});
+		}
+
+		function enterActivity(job) {
+			//TODO open modal to enter activity record
+			var modal = $modal.open({
+				templateUrl: '/app/activity/create.html',
+				windowClass: 'full'
 			});
 		}
 

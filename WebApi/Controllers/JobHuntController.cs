@@ -26,6 +26,12 @@ namespace WebApi.Controllers
 			return _contextProvider.Metadata();
 		}
 
+		[HttpGet]
+		public IQueryable<ActivityType> ActivityTypes()
+		{
+			return _contextProvider.Context.ActivityTypes;
+		}
+
 		// ~/breeze/jobhunt/Jobs
 		// ~/breeze/jobhunt/Jobs?$filter=IsArchived eq false&$orderby=CreatedAt 
 		[HttpGet]

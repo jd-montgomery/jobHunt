@@ -44,8 +44,10 @@
 						<br />
 						<div class="row">
 							<div class="col-xs-12">
-								<button type="button" ng-click="vm.showHideDescription()" 
-										class="btn btn-info" data-toggle="collapse" data-target="#description">{{vm.descriptionButtonText}}</button>
+								<button type="button" ng-click="vm.showHideDescription()"
+										class="btn btn-info" data-toggle="collapse" data-target="#description">
+									{{vm.descriptionButtonText}}
+								</button>
 								<div id="description" class="collapse">
 									<pre disabled editable-textarea="vm.job.Description">
 										{{ vm.job.Description || 'empty' }}
@@ -55,8 +57,37 @@
 						</div>
 					</div>
 					<br />
+					<div class="widget wgreen">
+						<div cc-widget-header allow-collapse="true" title="Activity List"></div>
+						<div class="widget-content user">
+							<div class="row">
+								<button ng-click="vm.enterActivity(vm.job)">Enter Activity</button>
+							</div>
+							<div class="row">
+								<table class="table table-condensed table-striped">
+									<thead>
+										<tr>
+											<td>Created On</td>
+											<td>Activity</td>
+											<td>Notes</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="activity in vm.job.activities">
+											<td>{{activity.CreatedOn | date}}</td>
+											<td>{{activity.Activity}}</td>
+											<td>{{activity.Notes}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<!-- TODO Add Paging -->
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
 					<div class="panel panel-default">
-						<div  class="panel-body">
+						<div class="panel-body">
 							<div id="googleMap"></div>
 						</div>
 					</div>

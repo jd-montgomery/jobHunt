@@ -59,6 +59,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\activity\activityFactory.js" />
+    <Content Include="app\activity\create.html" />
+    <Content Include="app\activity\createActivity.js" />
     <Content Include="app\company\companyFactory.js" />
     <Content Include="app\job\jobDetail.html" />
     <Content Include="app\job\jobDetail.js" />
